@@ -9,7 +9,7 @@ type ThemedTextProps = TextProps & {
 const ThemedText = ({style, title = false, ...props} : ThemedTextProps) => {
 	const colorScheme = useColorScheme();
 	const theme = Colors[colorScheme ?? 'light'];
-	const textColor = title ? theme.title : theme.text
+	const textColor = title ? theme.title : theme.text;
 	return (
 		<Text
 			style={[{color: textColor}, style]}

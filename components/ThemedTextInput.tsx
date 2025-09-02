@@ -6,12 +6,13 @@ const ThemedTextInput = ({style, ...props} : TextInputProps) => {
 	const theme = Colors[colorScheme ?? 'light'];
 	return (
 		<TextInput
+			placeholderTextColor={theme.text}
 			style={[{
 				backgroundColor: theme.uiBackground,
 				color: theme.text,
 				padding: 20,
 				borderRadius: 6,
-				width: '100%'
+				width: '100%',
 			}, style]}
 			{...props}
 		/>

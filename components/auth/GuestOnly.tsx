@@ -3,6 +3,7 @@ import {useUser} from "../../hooks/useUser";
 import {ReactNode, useEffect} from "react";
 import {router} from "expo-router";
 import ThemedView from "../ThemedView";
+import ThemedLoader from "../ThemedLoader";
 
 type GuestOnlyProps = {
 	children: ReactNode;
@@ -19,9 +20,7 @@ const GuestOnly = ({children}: GuestOnlyProps) => {
 
 	if(!authChecked || user) {
 		return (
-			<ThemedView>
-				<Text>Loading</Text>
-			</ThemedView>
+			<ThemedLoader/>
 		)
 	}
 

@@ -9,9 +9,14 @@ import ThemedText from "../components/ThemedText";
 const Home = () => {
 	return (
 		<ThemedView>
-			<Image source={Logo} style={styles.img}></Image>
-			<ThemedText title style={globalStyle.title}>Sol's app</ThemedText>
-			<ThemedText>Hiiiiii Sol, is me Arturo, look how cool my app is</ThemedText>
+
+			<View style={{alignItems: 'center'}}>
+				<Image source={Logo} style={styles.img}></Image>
+				<ThemedText title style={globalStyle.title}>Shelfie</ThemedText>
+				<ThemedText>Books and... books</ThemedText>
+			</View>
+			<Spacer/>
+
 
 			<View style={{alignItems: 'center'}}>
 				<Link href="/login" style={globalStyle.link}>

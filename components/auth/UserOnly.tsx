@@ -3,6 +3,7 @@ import {useUser} from "../../hooks/useUser";
 import {ReactElement, useEffect} from "react";
 import {router} from "expo-router";
 import ThemedView from "../ThemedView";
+import ThemedLoader from "../ThemedLoader";
 
 type UserOnlyProps = {
 	children: ReactElement;
@@ -19,9 +20,7 @@ const UserOnly = ({children}: UserOnlyProps) => {
 
 	if(!authChecked || !user) {
 		return (
-			<ThemedView>
-				<Text>Loading</Text>
-			</ThemedView>
+			<ThemedLoader/>
 		)
 	}
 
