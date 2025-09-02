@@ -1,4 +1,4 @@
-import {Image, StyleSheet, Text} from 'react-native'
+import {Image, StyleSheet, Text, View} from 'react-native'
 import Logo from '../assets/splash-icon.png'
 import {Link} from "expo-router";
 import {globalStyle} from "../styles";
@@ -10,17 +10,21 @@ const Home = () => {
 	return (
 		<ThemedView>
 			<Image source={Logo} style={styles.img}></Image>
-			<Spacer height={20} />
 			<ThemedText title style={globalStyle.title}>Sol's app</ThemedText>
-			<Spacer height={10}/>
 			<ThemedText>Hiiiiii Sol, is me Arturo, look how cool my app is</ThemedText>
-			<Spacer/>
-			<Link href="/login" style={globalStyle.link}>
-				<ThemedText>Login page</ThemedText>
-			</Link>
-			<Link href="/register" style={globalStyle.link}>
-				<ThemedText>Register page</ThemedText>
-			</Link>
+
+			<View style={{alignItems: 'center'}}>
+				<Link href="/login" style={globalStyle.link}>
+					<ThemedText>Login page</ThemedText>
+				</Link>
+				<Link href="/register" style={globalStyle.link}>
+					<ThemedText>Register page</ThemedText>
+				</Link>
+				<Link href="/profile" style={globalStyle.link}>
+					<ThemedText>Profile</ThemedText>
+				</Link>
+			</View>
+
 		</ThemedView>
 	);
 };
