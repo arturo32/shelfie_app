@@ -1,5 +1,5 @@
 import {Image, StyleSheet, Text, View} from 'react-native'
-import Logo from '../assets/splash-icon.png'
+import Logo from '../assets/splash-icon.png';
 import {Link} from "expo-router";
 import {globalStyle} from "../styles";
 import ThemedView from "../components/ThemedView";
