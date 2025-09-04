@@ -9,15 +9,16 @@ npx create-expo-app@latest --template blank-typescript
 
 - Use node >=22.9
 - Use JDK >= 17
+- npx
 
 ## Build
 
 ### Locally for android
 ```sh
-npx expo run:android
+npx android 
 ```
 
 **Run:**
 ```sh
-npx expo start
+npx start
 ```

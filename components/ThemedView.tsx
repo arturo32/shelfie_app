@@ -12,9 +12,9 @@ type ThemedViewProps = ViewProps & {
 const ThemedView = ({style, safe = false, ...props} : ThemedViewProps) => {
 	const colorScheme = useColorScheme();
 	const theme = Colors[colorScheme ?? 'light'];
+	const insets = useSafeAreaInsets();
 
 	if(safe) {
-		const insets = useSafeAreaInsets();
 		return (
 			<View
 				style={[{

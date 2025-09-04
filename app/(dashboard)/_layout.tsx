@@ -1,5 +1,5 @@
 import {StyleSheet, useColorScheme} from 'react-native'
-import {Tabs} from "expo-router";
+import {Stack, Tabs} from "expo-router";
 import {Colors} from "../../styles/colors";
 import {Ionicons} from '@expo/vector-icons';
 import UserOnly from "../../components/auth/UserOnly";
@@ -51,6 +51,7 @@ const Layout = () => {
 							/>
 						)}}
 				/>
+				<Tabs.Screen name="books/[id]" options={{ href: null }}/>
 			</Tabs>
 		</UserOnly>
 	);

@@ -7,9 +7,11 @@ import {useBooks} from "../../hooks/useBooks";
 import ThemedCard from "../../components/ThemedCard";
 import {Colors} from "../../styles/colors";
 import {useEffect} from "react";
+import {useRouter} from "expo-router";
 
 const Books = () => {
 	const {books, fetchBooks} = useBooks();
+	const router = useRouter();
 
 	useEffect(() => {
 		fetchBooks();
@@ -28,7 +30,7 @@ const Books = () => {
 				style={{width: '100%', marginTop: 40}}
         contentContainerStyle={styles.list}
 				renderItem={({item}) => (
-					<Pressable>
+					<Pressable onPress={() => router.push(`/books/${item.$id}`)}>
 						<ThemedCard style={styles.card}>
 							<ThemedText style={globalStyle.title}>{item.title}</ThemedText>
 							<ThemedText>Written by {item.author}</ThemedText>

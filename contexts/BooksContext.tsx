@@ -4,19 +4,20 @@ import {client, DATABASE_ID, databases, TABLE_ID} from "../lib/appwrite";
 import {ID, Models, Permission, Query, Role} from "react-native-appwrite";
 import {useUser} from "../hooks/useUser";
 
-type Book = {
+export type Book = {
 	title: string;
 	author: string;
 	description?: string;
 	userId: string;
+	$id: string;
 };
 
 type BooksContextType = {
 	books: (Book & Models.Row)[];
 	fetchBooks: () => Promise<void>;
-	fetchBookById: (id: number) => Promise<void>;
+	fetchBookById: (id: string) => Promise<Book>;
 	createBook: (data: Book) => Promise<void>;
-	deleteBook: (id: number) => Promise<void>;
+	deleteBook: (id: string) => Promise<void>;
 }
 
 export const BooksContext = createContext<BooksContextType | undefined>(undefined);
@@ -42,9 +43,14 @@ const BooksProvider = ({children}: ViewProps) => {
 		}
 	}
 
-	async function fetchBookById(id: number) {
+	async function fetchBookById(id: string) {
 		try {
-
+			const response = databases.getRow({
+				databaseId: DATABASE_ID,
+				tableId: TABLE_ID,
+				rowId: id
+			});
+			return response as Promise<Book & Models.DefaultRow>;
 		} catch (error: any) {
 			throw new Error(error);
 		}
@@ -68,9 +74,13 @@ const BooksProvider = ({children}: ViewProps) => {
 		}
 	}
 
-	async function deleteBook(id: number) {
+	async function deleteBook(id: string) {
 		try {
-
+			const response = await databases.deleteRow({
+				databaseId: DATABASE_ID,
+				tableId: TABLE_ID,
+				rowId: id
+			});
 		} catch (error: any) {
 			throw new Error(error);
 		}
