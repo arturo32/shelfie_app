@@ -12,9 +12,8 @@ const Profile = () => {
 	return (
 		<ThemedView>
 			<ThemedText title style={globalStyle.title}>
-				{user?.email}
+				Hello, {user?.email}!
 			</ThemedText>
-			<Spacer/>
 			<ThemedText>Time to start reading some books...</ThemedText>
 			<Spacer/>
 

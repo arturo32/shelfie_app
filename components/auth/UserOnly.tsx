@@ -1,8 +1,7 @@
-import {StyleSheet, Text} from 'react-native'
+import {StyleSheet} from 'react-native'
 import {useUser} from "../../hooks/useUser";
 import {ReactElement, useEffect} from "react";
 import {router} from "expo-router";
-import ThemedView from "../ThemedView";
 import ThemedLoader from "../ThemedLoader";
 
 type UserOnlyProps = {

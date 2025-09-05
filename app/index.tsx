@@ -5,8 +5,10 @@ import {globalStyle} from "../styles";
 import ThemedView from "../components/ThemedView";
 import Spacer from "../components/Spacer";
 import ThemedText from "../components/ThemedText";
+import {useUser} from "../hooks/useUser";
 
 const Home = () => {
+	const {user} = useUser();
 	return (
 		<ThemedView>
 
@@ -19,12 +21,19 @@ const Home = () => {
 
 
 			<View style={{alignItems: 'center'}}>
-				<Link href="/login" style={globalStyle.link}>
-					<ThemedText>Login page</ThemedText>
-				</Link>
-				<Link href="/register" style={globalStyle.link}>
-					<ThemedText>Register page</ThemedText>
-				</Link>
+				{
+					!!user ?
+					undefined :
+					<>
+						<Link href="/login" style={globalStyle.link}>
+							<ThemedText>Login page</ThemedText>
+						</Link>
+						<Link href="/register" style={globalStyle.link}>
+							<ThemedText>Register page</ThemedText>
+						</Link>
+					</>
+				}
+
 				<Link href="/profile" style={globalStyle.link}>
 					<ThemedText>Profile</ThemedText>
 				</Link>
@@ -35,12 +44,6 @@ const Home = () => {
 };
 
 const styles = StyleSheet.create({
-	card: {
-		backgroundColor: '#eee',
-		padding: 20,
-		borderRadius: 5,
-		boxShadow: '4px 4px rgba(0, 0, 0, 0.1)'
-	},
 	img: {
 		marginVertical: 20,
 		height: 150,

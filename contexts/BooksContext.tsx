@@ -28,7 +28,6 @@ const BooksProvider = ({children}: ViewProps) => {
 
 	async function fetchBooks() {
 		try {
-			console.log('hello')
 			const response = await databases.listRows<Book & Models.Row>({
 				databaseId: DATABASE_ID,
 				tableId: TABLE_ID,
@@ -38,7 +37,6 @@ const BooksProvider = ({children}: ViewProps) => {
 			});
 			setBooks(response.rows);
 		} catch (error: any) {
-			console.log('hi')
 			// throw new Error(error);
 		}
 	}
@@ -91,20 +89,23 @@ const BooksProvider = ({children}: ViewProps) => {
 		const channel = `databases.${DATABASE_ID}.tables.${TABLE_ID}.rows`
 		if(user) {
 			fetchBooks();
-			// unsubscribe = client.subscribe<Book>(channel, (response) => {
-			// 	const {payload, events} = response;
-			// 	if(events[0].includes('create')) {
-			// 		setBooks((prevState) => [...prevState, payload as Book & Models.Row]);
-			// 	}
-			// })
+			unsubscribe = client.subscribe<Book>(channel, (response) => {
+				const {payload, events} = response;
+				if(events[0].includes('create')) {
+					setBooks((prevState) => [...prevState, payload as Book & Models.Row]);
+				}
+				if(events[0].includes('delete')) {
+					setBooks((prevBooks) => prevBooks.filter((book) => book.$id !== payload.$id))
+				}
+			})
 		} else {
 			setBooks([]);
 		}
-		// return () => {
-		// 		if(unsubscribe) {
-		// 			unsubscribe();
-		// 		}
-		// }
+		return () => {
+				if(unsubscribe) {
+					unsubscribe();
+				}
+		}
 
 	}, [user]);
 
