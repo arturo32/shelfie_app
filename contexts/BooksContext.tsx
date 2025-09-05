@@ -89,15 +89,20 @@ const BooksProvider = ({children}: ViewProps) => {
 		const channel = `databases.${DATABASE_ID}.tables.${TABLE_ID}.rows`
 		if(user) {
 			fetchBooks();
-			unsubscribe = client.subscribe<Book>(channel, (response) => {
-				const {payload, events} = response;
-				if(events[0].includes('create')) {
-					setBooks((prevState) => [...prevState, payload as Book & Models.Row]);
-				}
-				if(events[0].includes('delete')) {
-					setBooks((prevBooks) => prevBooks.filter((book) => book.$id !== payload.$id))
-				}
-			})
+			try {
+				unsubscribe = client.subscribe<Book>(channel, (response) => {
+					const {payload, events} = response;
+					if(events[0].includes('create')) {
+						setBooks((prevState) => [...prevState, payload as Book & Models.Row]);
+					}
+					if(events[0].includes('delete')) {
+						setBooks((prevBooks) => prevBooks.filter((book) => book.$id !== payload.$id))
+					}
+				})
+			} catch (error: any) {
+				console.error(error.message);
+			}
+
 		} else {
 			setBooks([]);
 		}

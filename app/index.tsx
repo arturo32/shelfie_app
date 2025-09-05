@@ -1,5 +1,5 @@
 import {Image, StyleSheet, Text, View} from 'react-native'
-import Logo from '../assets/splash-icon.png';
+import Logo from '../assets//img/books.png';
 import {Link} from "expo-router";
 import {globalStyle} from "../styles";
 import ThemedView from "../components/ThemedView";
@@ -14,7 +14,8 @@ const Home = () => {
 
 			<View style={{alignItems: 'center'}}>
 				<Image source={Logo} style={styles.img}></Image>
-				<ThemedText title style={globalStyle.title}>Shelfie</ThemedText>
+
+				<ThemedText title style={[globalStyle.title, styles.appTitle]}>SHELFIE</ThemedText>
 				<ThemedText>Books and... books</ThemedText>
 			</View>
 			<Spacer/>
@@ -48,7 +49,12 @@ const styles = StyleSheet.create({
 		marginVertical: 20,
 		height: 150,
 		aspectRatio: 1,
-		borderRadius: 100
+	},
+	appTitle: {
+		letterSpacing: 2,
+		transform: [
+			{translateY: -10}
+		]
 	}
 });
 

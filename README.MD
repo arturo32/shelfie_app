@@ -7,18 +7,20 @@ npx create-expo-app@latest --template blank-typescript
 
 ## Setup
 
-- Use node >=22.9
+- Use node >= 22.9
 - Use JDK >= 17
-- npx
 
 ## Build
 
 ### Locally for android
 ```sh
-npx android 
+npm android 
 ```
 
 **Run:**
 ```sh
-npx start
+npm start
 ```
+
+
+<a href="https://www.flaticon.com/free-icons/books" title="books icons">Books icons created by Freepik - Flaticon</a>
